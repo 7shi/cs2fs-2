@@ -1,4 +1,5 @@
 syntax: glob
 *.suo
+Bin/
 bin/
 obj/
