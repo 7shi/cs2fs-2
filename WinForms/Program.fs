@@ -44,10 +44,14 @@ mi0.Click.Add <| fun e ->
 mi1.Click.Add <| fun e ->
     Debug.Stream <- new StringWriter()
     t2.Clear()
-    let mutable lex = new Lexer(t1.Text)
-    let mutable tokens = lex.ReadAllTokens()
-    let mutable conv = new Converter(tokens)
-    conv.Convert()
+    try
+        let mutable lex = new Lexer(t1.Text)
+        let mutable tokens = lex.ReadAllTokens()
+        let mutable conv = new Converter(tokens)
+        conv.Convert()
+    with | e ->
+        Debug.WriteLine()
+        Debug.WriteLine(e.Message)
     Debug.Stream.Close()
     t2.AppendText(Debug.Stream.ToString())
 
